@@ -5,10 +5,12 @@ namespace App;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Emadadly\LaravelUuid\Uuids;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use Uuids;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +18,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','phone'
     ];
 
     /**
@@ -46,4 +48,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public $incrementing = false;
 }

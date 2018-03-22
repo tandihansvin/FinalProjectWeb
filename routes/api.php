@@ -30,3 +30,5 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
+
+Route::post('/test','testController@test');

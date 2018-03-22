@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cb044e92a47dd366277a5326c38d7013",
-    "content-hash": "6792a50482a74461f6e14d36d5ccacce",
+    "hash": "fa0c3e9c84026748b681c4be5f629832",
+    "content-hash": "a35db6612250616cf23ecf1126e79ee8",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -268,6 +268,66 @@
             "time": "2017-11-15 23:40:40"
         },
         {
+            "name": "emadadly/laravel-uuid",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EmadAdly/laravel-uuid.git",
+                "reference": "99bfd8c1ccd1ac49fa89f9a15e060a0ceaa15365"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EmadAdly/laravel-uuid/zipball/99bfd8c1ccd1ac49fa89f9a15e060a0ceaa15365",
+                "reference": "99bfd8c1ccd1ac49fa89f9a15e060a0ceaa15365",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*",
+                "php": "~5.6|~7.0"
+            },
+            "require-dev": {
+                "laravel/framework": "5.2.*|5.3.*|5.4.*|5.5.*|5.6.*",
+                "phpunit/phpunit": "5.5.*|7.0.*",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Emadadly\\LaravelUuid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emad Adly",
+                    "email": "thedevgist@gmail.com",
+                    "homepage": "http://devgist.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "laravel uuid a simple, automatic UUID generator for any model based on Laravel.",
+            "homepage": "https://github.com/emadadly/laravel-uuid",
+            "keywords": [
+                "Laravel UUID",
+                "emadadly",
+                "generator",
+                "guid",
+                "laravel",
+                "laravel-guid",
+                "laravel-uuid",
+                "uuid"
+            ],
+            "time": "2018-02-17 14:21:13"
+        },
+        {
             "name": "erusev/parsedown",
             "version": "1.7.1",
             "source": {
@@ -456,16 +516,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.11",
+            "version": "v5.6.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "195ba6a67bdad2a23105c7ab410cd43e0f20bb73"
+                "reference": "82d8165d1ea86bdd81ddfa1db9343fa19e7d1450"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/195ba6a67bdad2a23105c7ab410cd43e0f20bb73",
-                "reference": "195ba6a67bdad2a23105c7ab410cd43e0f20bb73",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/82d8165d1ea86bdd81ddfa1db9343fa19e7d1450",
+                "reference": "82d8165d1ea86bdd81ddfa1db9343fa19e7d1450",
                 "shasum": ""
             },
             "require": {
@@ -474,7 +534,7 @@
                 "erusev/parsedown": "~1.7",
                 "ext-mbstring": "*",
                 "ext-openssl": "*",
-                "league/flysystem": "~1.0",
+                "league/flysystem": "^1.0.8",
                 "monolog/monolog": "~1.12",
                 "nesbot/carbon": "^1.24.1",
                 "php": "^7.1.3",
@@ -590,7 +650,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-03-09 16:53:27"
+            "time": "2018-03-14 17:29:38"
         },
         {
             "name": "laravel/tinker",
@@ -940,16 +1000,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.24.2",
+            "version": "1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "bba6c6e410c6b4317e37a9474aeaa753808c3875"
+                "reference": "cbcf13da0b531767e39eb86e9687f5deba9857b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/bba6c6e410c6b4317e37a9474aeaa753808c3875",
-                "reference": "bba6c6e410c6b4317e37a9474aeaa753808c3875",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cbcf13da0b531767e39eb86e9687f5deba9857b4",
+                "reference": "cbcf13da0b531767e39eb86e9687f5deba9857b4",
                 "shasum": ""
             },
             "require": {
@@ -989,7 +1049,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-03-10 10:10:14"
+            "time": "2018-03-19 15:50:49"
         },
         {
             "name": "nikic/php-parser",
@@ -3054,16 +3114,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v2.0.0",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "4e310ef9384f53ee8dda8736afb3cbaf320753a0"
+                "reference": "245958b02c6a9edf24627380f368333ac5413a51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/4e310ef9384f53ee8dda8736afb3cbaf320753a0",
-                "reference": "4e310ef9384f53ee8dda8736afb3cbaf320753a0",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/245958b02c6a9edf24627380f368333ac5413a51",
+                "reference": "245958b02c6a9edf24627380f368333ac5413a51",
                 "shasum": ""
             },
             "require": {
@@ -3112,7 +3172,7 @@
                 "php",
                 "symfony"
             ],
-            "time": "2018-02-18 12:29:27"
+            "time": "2018-03-21 20:11:24"
         },
         {
             "name": "phar-io/manifest",
