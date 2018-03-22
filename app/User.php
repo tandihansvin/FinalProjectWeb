@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Emadadly\LaravelUuid\Uuids;
 
-class User extends Authenticatable implements JWTSubject
+class User extends \TCG\Voyager\Models\User implements JWTSubject
 {
     use Notifiable;
     use Uuids;
