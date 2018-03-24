@@ -33,3 +33,10 @@ Route::group([
 });
 
 Route::post('/test','testController@test');
+
+Route::group([
+	'prefix' => 'item'
+], function($router){
+	Route::get('', 'ItemController@index');
+	Route::get('top10','ItemController@top10');
+});
