@@ -21,8 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
-            //TODO
-            //adding voyager role table
             $table->rememberToken();
             $table->timestamps();
         });
