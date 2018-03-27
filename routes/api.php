@@ -39,3 +39,5 @@ Route::group([
 	Route::get('', 'ItemController@index');
 	Route::get('top10','ItemController@top10');
 });
+
+Route::get('/menu', 'navController@loadMenu');
