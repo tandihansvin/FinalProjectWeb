@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use JWTAuth;
 
 class AuthController extends Controller
 {
@@ -30,12 +31,17 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth('api')->attempt($credentials)) {
+        $user = User::where('email', $credentials['email'])->firstOrFail();
+
+        $payload = [
+            "name" => $user["name"]
+        ];
+
+        if (! $token = auth('api')->claims($payload)->attempt($credentials)) {
             return response()->json(['msg' => 'Email or Password is incorrect'], 401);
         }
 
-        return $this->respondWithToken($token);
-        // return $token;
+        return $this->respondWithToken(JWTAuth::fromUser($user, $payload));
     }
 
     /**
