@@ -161,6 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Emadadly\LaravelUuid\LaravelUuidServiceProvider::class,
         TCG\Voyager\VoyagerServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
     ],
 
     /*

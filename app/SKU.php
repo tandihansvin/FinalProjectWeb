@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class SKU extends Model
 {
+    use Searchable;
     protected $fillable = [
         'product_id',
         'size_id',
@@ -24,4 +26,6 @@ class SKU extends Model
           'App\SKUImages'
       );
     }
+
+
 }
