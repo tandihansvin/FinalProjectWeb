@@ -3,24 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\SKU;
-use App\Product;
-use App\ProductTag;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
-
-class testController extends Controller
+class SearchController extends Controller
 {
-    function test(Request $request){
-    	return User::create([
-    		'name'=>$request->name,
-    		'email'=>$request->email,
-    		'password'=>Hash::make($request->password)
-    	]);
-    }
-
-    function getProductTags(Request $request){
+    public function search(Request $request){
         $string = $request->q;
 
         if ($request->t){
@@ -64,11 +52,4 @@ class testController extends Controller
         }
         return $products;
     }
-
-    function sku(Request $request){
-        return Product::find('1')
-            ->skus()
-            ->get();
-    }
 }
-

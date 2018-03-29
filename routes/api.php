@@ -32,6 +32,7 @@ Route::group([
 });
 
 Route::post('/test','testController@test');
+Route::post('/search', 'SearchController@search');
 
 Route::group([
 	'prefix' => 'item'
@@ -41,3 +42,7 @@ Route::group([
 });
 
 Route::get('/menu', 'navController@loadMenu');
+
+Route::get("/test/getproducttags", 'testController@getProductTags');
+
+Route::get("/test/skus", 'testController@sku');

@@ -10,18 +10,21 @@ class Product extends Model
     use Searchable;
     protected $fillable = ['name', 'short_desc', 'long_desc'];
 
-    public function getSKUs()
+    public function skus()
     {
         return $this->hasMany(
             'App\SKU'
         );
     }
 
-    public function getTags()
+    public function tags()
     {
-        return $this->hasManyThrough(
-            'App\Tag',
-            'App\ProductTag'
-        );
+        return $this->belongsToMany('App\Tag', 'product_tags');
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->only('name','short_desct','long_desc');
+        return $array;
     }
 }

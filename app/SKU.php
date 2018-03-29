@@ -20,11 +20,20 @@ class SKU extends Model
 
     protected $table = 'SKU';
 
-    public function getImages()
+    public function color(){
+        return $this->belongsTo('App\Color');
+    }
+
+    public function size(){
+        return $this->belongsTo('App\Size');
+    }
+
+    public function images()
     {
       return $this->hasMany(
-          'App\SKUImages'
-      );
+          'App\SKUImages',
+          'SKU_ID'
+          );
     }
 
 
