@@ -13,10 +13,10 @@ class TransactionHeader extends Model
     ];
 
     public function transactionDetail(){
-        return $this->hasMany('App/TransactionDetail','header_id');
+        return $this->hasMany('App\TransactionDetail','header_id');
     }
 
     public function statusChange(){
-        return $this->hasMany('App/StatusChangeHistory','header_id');
+        return $this->hasMany('App\StatusChangeHistory','header_id');
     }
 }

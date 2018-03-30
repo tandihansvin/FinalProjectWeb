@@ -14,6 +14,6 @@ class StatusChangeHistory extends Model
     ];
 
     public function status(){
-        return $this->belongsTo('App/Status');
+        return $this->belongsTo('App\Status', 'status_id');
     }
 }
