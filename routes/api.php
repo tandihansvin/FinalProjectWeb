@@ -47,4 +47,9 @@ Route::get('/menu', 'navController@loadMenu');
 
 //Route::get("/test/skus", 'testController@sku');
 
-Route::get('/statusLastTrans','TransactionController@getLastStatus');
+Route::group([
+    'prefix' =>'user'
+], function($router){
+    Route::get('statusLastTrans','TransactionController@getLastStatus');
+    Route::get('address','UserController@getAllAddresses');
+});
