@@ -49,17 +49,17 @@ class User extends \TCG\Voyager\Models\User implements JWTSubject
         return [];
     }
 
-    public function getAddress()
+    public function address()
     {
         return $this->hasMany('App\Address');
     }
 
-    public function getCart()
+    public function cart()
     {
         return $this->hasMany('App\Cart');
     }
 
-    public function getTransactions()
+    public function transactions()
     {
         return $this->hasMany('App\TransactionHeader');
     }

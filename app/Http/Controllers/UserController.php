@@ -13,13 +13,16 @@ class UserController extends Controller
         $this->middleware('auth:api');
     }
 
-    public function getAllAddresses(){
+    public function getProfile(){
         try{
-            return User::findOrFail(auth('api')->user())->first()->getAddress;
+            $user = User::findOrFail(auth('api')->user())->first();
+            $user->address;
+            return $user;
         }
         catch(ModelNotFoundException $e)
         {
             return response()->json(['msg' => 'Failed to retrieve data'], 401);
         }
     }
+
 }

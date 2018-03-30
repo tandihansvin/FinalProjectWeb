@@ -51,5 +51,5 @@ Route::group([
     'prefix' =>'user'
 ], function($router){
     Route::get('statusLastTrans','TransactionController@getLastStatus');
-    Route::get('address','UserController@getAllAddresses');
+    Route::get('profile','UserController@getProfile');
 });
