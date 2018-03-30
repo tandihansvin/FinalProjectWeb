@@ -7,6 +7,7 @@ use Validator;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use JWTAuth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AuthController extends Controller
 {
@@ -31,7 +32,13 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        $user = User::where('email', $credentials['email'])->firstOrFail();
+        try{
+            $user = User::where('email', $credentials['email'])->firstOrFail();
+        }
+        catch(ModelNotFoundException $e)
+        {
+            return response()->json(['msg' => 'Email or Password is incorrect'], 401);
+        }
 
         $payload = [
             "name" => $user["name"]

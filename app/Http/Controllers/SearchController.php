@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
+use App\SKU;
+use App\Product;
+use App\ProductTag;
 
 class SearchController extends Controller
 {
@@ -29,7 +30,7 @@ class SearchController extends Controller
                 ->get();
         } elseif (!$tags and $string) {
             $products = Product::where('name', 'like', "%$string%")
-                ->get();
+                ->paginate(16);
         } elseif ($tags and !$string){
             $prids = ProductTag::whereIn("tag_id", $tags)
                 ->groupBy('product_id')

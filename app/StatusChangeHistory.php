@@ -12,4 +12,8 @@ class StatusChangeHistory extends Model
         'status_id',
         'desc'
     ];
+
+    public function status(){
+        return $this->belongsTo('App/Status');
+    }
 }

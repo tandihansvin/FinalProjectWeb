@@ -12,4 +12,5 @@ class TransactionDetail extends Model
         'qty',
         'paid'
     ];
+
 }

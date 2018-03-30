@@ -11,4 +11,12 @@ class TransactionHeader extends Model
         'user_id',
         'total'
     ];
+
+    public function transactionDetail(){
+        return $this->hasMany('App/TransactionDetail','header_id');
+    }
+
+    public function statusChange(){
+        return $this->hasMany('App/StatusChangeHistory','header_id');
+    }
 }
