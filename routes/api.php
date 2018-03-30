@@ -51,9 +51,10 @@ Route::group([
     'prefix' =>'user'
 ], function($router){
     Route::get('statusLastTrans','TransactionController@getLastStatus');
+    Route::get('detailHead','TransactionController@getDetail');
+
     Route::get('profile','UserController@getProfile');
     Route::put('updateProfile','UserController@updateProfile');
     Route::put('updatePassword', 'UserController@updatePassword');
-    Route::get('detailHead','TransactionController@getDetail');
     Route::delete('deleteAddress','UserController@deleteAddress');
 });

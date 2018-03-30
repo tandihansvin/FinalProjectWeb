@@ -19,4 +19,8 @@ class TransactionHeader extends Model
     public function statusChange(){
         return $this->hasMany('App\StatusChangeHistory','header_id');
     }
+
+    public function address(){
+        return $this->belongsTo('App\Address');
+    }
 }

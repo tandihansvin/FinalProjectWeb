@@ -18,6 +18,7 @@ class TransactionController extends Controller
 //        return auth('api')->user()->id;
         $headTrans = TransactionHeader::where('user_id',auth('api')->user()->id)->get();
         foreach ($headTrans as &$trans){
+            $trans->address;
             $trans['status'] = $trans->statusChange()->latest('time')->first()->status->name;
         }
         return $headTrans;
