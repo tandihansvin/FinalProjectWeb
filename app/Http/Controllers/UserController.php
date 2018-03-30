@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\User;
+use Validator;
 
 class UserController extends Controller
 {
@@ -25,4 +26,28 @@ class UserController extends Controller
         }
     }
 
+    public function updateProfile(Request $request){
+        try{
+            $user = auth('api')->user();
+//            return $user;
+            $validator = Validator::make($request->all(),[
+                'email' => 'required|email|unique:users,email,'.$user->id,
+                'name' => 'required',
+                'phone' => 'required|numeric',
+            ]);
+            if($validator->fails()) return response()->json($validator->errors(),401);
+
+            $user = User::findOrFail($user->id)->first();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->save();
+
+            return response()->json(['msg' => 'Success'],200);
+        }
+        catch(ModelNotFoundException $e)
+        {
+            return response()->json(['msg' => 'Failed'], 401);
+        }
+    }
 }

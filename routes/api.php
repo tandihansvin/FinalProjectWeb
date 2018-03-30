@@ -52,4 +52,5 @@ Route::group([
 ], function($router){
     Route::get('statusLastTrans','TransactionController@getLastStatus');
     Route::get('profile','UserController@getProfile');
+    Route::put('updateProfile','UserController@updateProfile');
 });
