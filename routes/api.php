@@ -53,4 +53,7 @@ Route::group([
     Route::get('statusLastTrans','TransactionController@getLastStatus');
     Route::get('profile','UserController@getProfile');
     Route::put('updateProfile','UserController@updateProfile');
+    Route::put('updatePassword', 'UserController@updatePassword');
+    Route::get('detailHead','TransactionController@getDetail');
+    Route::delete('deleteAddress','UserController@deleteAddress');
 });

@@ -12,5 +12,7 @@ class TransactionDetail extends Model
         'qty',
         'paid'
     ];
-
+    public function sku(){
+        return $this->belongsTo('App\SKU');
+    }
 }
