@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\SKU;
 use App\Product;
 use App\ProductTag;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class SearchController extends Controller
+class ProductController extends Controller
 {
     public function search(Request $request){
         $string = $request->q;
@@ -52,5 +52,21 @@ class SearchController extends Controller
             }
         }
         return $products;
+    }
+
+    public function getSKU(Request $request){
+        try{
+            $product = Product::findOrFail($request->id);
+            $product->skus;
+            foreach ($product->skus as $sku){
+                $sku->color;
+                $sku->size;
+                $sku->images;
+            }
+            return $product;
+        }
+        catch(ModelNotFoundException $e){
+            return response()->json(['msg'=>'product is not found'],401);
+        }
     }
 }

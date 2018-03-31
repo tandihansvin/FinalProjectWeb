@@ -31,21 +31,17 @@ Route::group([
 
 });
 
-//Route::post('/test','testController@test');
-Route::post('/search', 'SearchController@search');
+Route::post('/search', 'ProductController@search');
+Route::get('/product','ProductController@getSKU');
 
-Route::group([
-	'prefix' => 'item'
-], function($router){
-	Route::get('', 'ItemController@index');
-	Route::get('top10','ItemController@top10');
-});
+//Route::group([
+//	'prefix' => 'item'
+//], function($router){
+//	Route::get('', 'ItemController@index');
+//	Route::get('top10','ItemController@top10');
+//});
 
 Route::get('/menu', 'navController@loadMenu');
-
-//Route::get("/test/getproducttags", 'testController@getProductTags');
-
-//Route::get("/test/skus", 'testController@sku');
 
 Route::group([
     'prefix' =>'user'
