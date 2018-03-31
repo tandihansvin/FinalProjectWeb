@@ -12,19 +12,30 @@ class Product extends Model
 
     public function skus()
     {
-        return $this->hasMany(
-            'App\SKU'
-        );
+        return $this->hasMany('App\SKU');
     }
 
     public function tags()
     {
-        return $this->belongsToMany('App\Tag', 'product_tags');
+        return $this->hasMany('App\ProductTag', 'product_id');
     }
 
     public function toSearchableArray()
     {
-        $array = $this->only('name','short_desct','long_desc');
-        return $array;
+        $x = $this->toArray();
+
+        $x['tags'] = $this->tags;
+        foreach($x['tags'] as &$tag){
+            $tag->tag;
+        }
+
+        $x['sku'] = $this->skus;
+        foreach($x['sku'] as &$sku){
+            $sku->color;
+            $sku->size;
+            $sku->image;
+        }
+
+        return $x;
     }
 }
