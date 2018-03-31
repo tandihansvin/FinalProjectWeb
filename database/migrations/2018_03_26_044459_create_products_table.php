@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->text('short_desc');
             $table->text('long_desc');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

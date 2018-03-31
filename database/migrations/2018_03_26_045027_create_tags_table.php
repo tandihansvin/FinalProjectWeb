@@ -18,6 +18,7 @@ class CreateTagsTable extends Migration
             $table->unsignedInteger('parent_id');
             $table->string('name');
             $table->foreign('parent_id')->references('id')->on('tags');
+            $table->softDeletes();
         });
     }
 

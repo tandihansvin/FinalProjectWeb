@@ -20,9 +20,9 @@ class CreateTransactionDetailsTable extends Migration
             $table->unsignedInteger('qty');
             $table->integer('paid');
             $table->timestamps();
-            $table->timestamp('delete_at')->nullable();
             $table->foreign('header_id')->references('id')->on('transaction_headers');
             $table->foreign('sku_id')->references('id')->on('SKU');
+            $table->softDeletes();
         });
     }
 

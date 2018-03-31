@@ -21,6 +21,7 @@ class CreateSKUImagesTable extends Migration
             $table->string('large');
             $table->timestamps();
             $table->foreign('SKU_id')->references('id')->on('SKU');
+            $table->softDeletes();
         });
     }
 

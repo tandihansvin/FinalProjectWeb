@@ -20,6 +20,7 @@ class CreateAddressesTable extends Migration
             $table->string('entry_name');
             $table->string('phone_number');
             $table->text('address');
+            $table->softDeletes();
         });
     }
 

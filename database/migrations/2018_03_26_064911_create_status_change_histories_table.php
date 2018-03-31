@@ -20,7 +20,7 @@ class CreateStatusChangeHistoriesTable extends Migration
             $table->unsignedInteger('status_id');
             $table->string('desc');
             $table->timestamps();
-            $table->timestamp('delete_at')->nullable();
+            $table->softDeletes();
             $table->foreign('header_id')->references('id')->on('transaction_headers');
             $table->foreign('status_id')->references('id')->on('statuses');
         });

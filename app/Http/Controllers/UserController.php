@@ -89,4 +89,29 @@ class UserController extends Controller
             return response()->json(['msg'=>'not found address'],401);
         }
     }
+
+    public function addAddress(Request $request){
+        try{
+            $user = auth('api')->user();
+            $validator = Validator::make($request->all(),[
+                'addressName' => 'required',
+                'addressPhone' => 'required|numeric',
+                'addressDetail' => 'required'
+            ]);
+            if($validator->fails()) return response()->json($validator->errors(),401);
+
+            $address = Address::create([
+                'user_id' => $user->id,
+                'entry_name' => $request->addressName,
+                'phone_number' => $request->addressPhone,
+                'address' => $request->addressDetail
+            ]);
+
+            return response()->json(['msg' => 'Success'],200);
+        }
+        catch(ModelNotFoundException $e)
+        {
+            return response()->json(['msg' => 'Failed'], 401);
+        }
+    }
 }

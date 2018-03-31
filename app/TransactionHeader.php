@@ -9,6 +9,7 @@ class TransactionHeader extends Model
     protected $fillable = [
         'time',
         'user_id',
+        'address_id',
         'total'
     ];
 

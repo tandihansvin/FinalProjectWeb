@@ -17,10 +17,12 @@ class CreateTransactionHeadersTable extends Migration
             $table->increments('id');
             $table->dateTime('time');
             $table->uuid('user_id');
+            $table->unsignedInteger('address_id');
             $table->integer('total');
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->softDeletes();
         });
     }
 

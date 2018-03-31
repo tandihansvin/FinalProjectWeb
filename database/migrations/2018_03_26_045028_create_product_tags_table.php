@@ -20,6 +20,7 @@ class CreateProductTagsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -57,4 +57,5 @@ Route::group([
     Route::put('updateProfile','UserController@updateProfile');
     Route::put('updatePassword', 'UserController@updatePassword');
     Route::delete('deleteAddress','UserController@deleteAddress');
+    Route::post('addAddress','UserController@addAddress');
 });
