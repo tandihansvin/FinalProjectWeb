@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Cart;
 use App\TransactionHeader;
 use Illuminate\Support\Facades\Log;
-use App\StatusChangeHistory;
 
 class PaymentController extends Controller
 {
