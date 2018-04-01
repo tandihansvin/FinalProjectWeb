@@ -10,6 +10,8 @@ use App\Veritrans\Veritrans;
 use Illuminate\Support\Facades\Auth;
 use App\Cart;
 use App\TransactionHeader;
+use Illuminate\Support\Facades\Log;
+use App\StatusChangeHistory;
 
 class PaymentController extends Controller
 {
@@ -18,7 +20,7 @@ class PaymentController extends Controller
         Veritrans::$serverKey = "SB-Mid-server-J6qeaaIi6VWSSC4sq7i9tJc5";
         Veritrans::$isProduction = false;
 
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('callback');
     }
 
 
@@ -150,5 +152,32 @@ class PaymentController extends Controller
                 'error' => $e->getMessage
             ], 400);
         }
+    }
+
+    public function callback(Request $request)
+    {
+        $good_status = ['authorize', 'capture', 'settlement'];
+        $status = $request->transaction_status;
+        $txn = TransactionHeader::findOrFail($request->order_id);
+        $last = $txn->statusChange()->latest('time')->first()->status->id;
+
+        if($last == 1){
+            $statusid = 1;
+
+            if(in_array($status, $good_status)) {
+                $statusid = 2;
+            } else {
+                $statusid = 7;
+            }
+
+            StatusChangeHistory::create([
+                'time' => date("Y-m-d H:i:s"),
+                'header_id' => $txn,
+                'status_id' => $statusid,
+                'desc' => $request->payment_type . ' ' . $status
+            ]);
+        }
+
+        return response()->json([], 200);
     }
 }
