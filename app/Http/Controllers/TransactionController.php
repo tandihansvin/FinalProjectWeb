@@ -61,9 +61,4 @@ class TransactionController extends Controller
         return response()->json(['msg'=>'success'],200);
     }
 
-    public function checkExpired(){
-        StatusChangeHistory::where('status_id',1)
-                            ->where('time', '<', Carbon::now()->subDays(3))
-                            ->update(['status_id' => 7]);
-    }
 }

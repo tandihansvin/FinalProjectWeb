@@ -26,6 +26,13 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->call(function () {
+            StatusChangeHistory::where('status_id',1)
+                ->where('time', '<', Carbon::now()->subDays(3))
+                ->update(['status_id' => 7]);
+        })->everyMinute();
+
+
     }
 
     /**
