@@ -43,6 +43,12 @@ Route::get('/product','ProductController@getSKU');
 
 Route::get('/menu', 'navController@loadMenu');
 
+//Route::get("/test/getproducttags", 'testController@getProductTags');
+
+//Route::get("/test/skus", 'testController@sku');
+
+Route::post('/test/midtrans', 'PaymentController@createTransaction');
+
 Route::group([
     'prefix' =>'user'
 ], function($router){
