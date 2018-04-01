@@ -69,4 +69,17 @@ class ProductController extends Controller
             return response()->json(['msg'=>'product is not found'],401);
         }
     }
+
+    public function getTopProduct(){
+        $products = Product::orderBy('id','desc')->take(4)->get();
+        foreach ($products as $product){
+            $product->skus;
+            foreach ($product->skus as $sku){
+                $sku->color;
+                $sku->size;
+                $sku->images;
+            }
+        }
+        return $products;
+    }
 }

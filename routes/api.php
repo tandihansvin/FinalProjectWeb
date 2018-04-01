@@ -33,8 +33,10 @@ Route::group([
 
 Route::post('/search', 'ProductController@search');
 Route::get('/product','ProductController@getSKU');
+Route::get('/product/topProduct', 'ProductController@getTopProduct');
 
 //Route::group([
+
 //	'prefix' => 'item'
 //], function($router){
 //	Route::get('', 'ItemController@index');

@@ -9,7 +9,7 @@ class navController extends Controller
 {
     function loadMenu(){
         $res = [];
-        $l1 = Nav::where('parent_id',1)->get();
+        $l1 = Nav::where('parent_id',5)->get();
         foreach ($l1 as $comp1){
             $tmp = [];
             $l2 = Nav::where('parent_id',$comp1['id'])->get();
