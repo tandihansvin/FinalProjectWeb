@@ -156,11 +156,22 @@ class PaymentController extends Controller
     public function callback(Request $request)
     {
         $good_status = ['authorize', 'capture', 'settlement'];
+        $wait_status = ['pending'];
         $status = $request->transaction_status;
-        $txn = TransactionHeader::findOrFail($request->order_id);
-        $last = $txn->statusChange()->latest('time')->first()->status->id;
 
-        if($last == 1){
+        try {
+            $txn = TransactionHeader::findOrFail($request->order_id);
+        } catch (Exception $e) {
+            return response()->json([ 'error' => 'Order not found' ], 404);
+        }
+
+        try {
+            $last = $txn->statusChange()->latest('time')->firstOrFail()->status->id;
+        } catch (Exception $e) {
+            return response()->json([ 'error' => 'Transaction is invalid' ], 404);
+        }
+
+        if($last == 1 and !in_array($status, $wait_status)){
             $statusid = 1;
 
             if(in_array($status, $good_status)) {
