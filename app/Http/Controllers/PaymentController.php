@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use Exception;
 use Illuminate\Http\Request;
 use App\Veritrans\Veritrans;
 use Illuminate\Support\Facades\Auth;
 use App\Cart;
+use App\TransactionHeader;
 
 class PaymentController extends Controller
 {
@@ -27,65 +29,84 @@ class PaymentController extends Controller
             - Qty
         4. Do the magic
         5. Decrese product qty
-        */
 
-        $cart_items = Cart::where('user_id', $request->user()->id)->get();
+        user_id, address_id, total, time
+        request = address_id
+        */
+        $total = 0;
+        $cart_items = Cart::where('user_id', auth('api')->user()->id)->get();
 
         foreach ($cart_items as $item) {
-            $item->getSKU();
+            $item->sku;
+            $total += $item->qty * $item->sku['price'];
         }
 
-        unset($sku);
-
-        dd($cart_items);
-
+        //bikin header
+        $head = TransactionHeader::create([
+            'user_id' => auth('api')->user()->id,
+            'address_id' => $request->address_id,
+            'total' => $total,
+            'time' => date("Y-m-d H:i:s")
+        ]);
         $vt = new Veritrans();
 
         $transaction_details = array(
-            'order_id'          => uniqid(),
-            'gross_amount'  => 200000
+            'order_id'          => $head->id,
+            'gross_amount'  => $total
         );
         // Populate items
-        $items = [
-            array(
-                'id'                => 'item1',
-                'price'         => 100000,
-                'quantity'  => 1,
-                'name'          => 'Adidas f50'
-            ),
-            array(
-                'id'                => 'item2',
-                'price'         => 50000,
-                'quantity'  => 2,
-                'name'          => 'Nike N90'
-            )
-        ];
-        // Populate customer's billing address
+//        $items = [
+//            array(
+//                'id'                => 'item1',
+//                'price'         => 100000,
+//                'quantity'  => 1,
+//                'name'          => 'Adidas f50'
+//            ),
+//            array(
+//                'id'                => 'item2',
+//                'price'         => 50000,
+//                'quantity'  => 2,
+//                'name'          => 'Nike N90'
+//            )
+//        ];
+        $items = [];
+        foreach($cart_items as $item){
+            $tmp = [
+                'id' => $item['id'],
+                'price' => $item->sku['price'],
+                'quantity' => $item['qty'],
+                'name' => $item->sku['fullname']
+            ];
+            array_push($items,$tmp);
+        }
+        $address = Address::find($request->address_id);
+//        return $address;
+        // Populate customer's billing
         $billing_address = array(
-            'first_name'        => "Andri",
-            'last_name'         => "Setiawan",
-            'address'           => "Karet Belakang 15A, Setiabudi.",
-            'city'                  => "Jakarta",
-            'postal_code'   => "51161",
-            'phone'                 => "081322311801",
+            'first_name'        => auth('api')->user()->name,
+            'last_name'         => "",
+            'address'           => $address->address,
+            'city'                  => "",
+            'postal_code'   => "",
+            'phone'                 => $address->phone,
             'country_code'  => 'IDN'
         );
         // Populate customer's shipping address
         $shipping_address = array(
-            'first_name'    => "John",
-            'last_name'     => "Watson",
-            'address'       => "Bakerstreet 221B.",
-            'city'              => "Jakarta",
-            'postal_code' => "51162",
-            'phone'             => "081322311801",
-            'country_code'=> 'IDN'
+            'first_name'        => auth('api')->user()->name,
+            'last_name'         => "",
+            'address'           => $address->address,
+            'city'                  => "",
+            'postal_code'   => "",
+            'phone'                 => $address->phone,
+            'country_code'  => 'IDN'
         );
         // Populate customer's Info
         $customer_details = array(
-            'first_name'            => "Andri",
-            'last_name'             => "Setiawan",
-            'email'                     => "andrisetiawan@asdasd.com",
-            'phone'                     => "081322311801",
+            'first_name'            => auth('api')->user()->name,
+            'last_name'             => "",
+            'email'                     => auth('api')->user()->email,
+            'phone'                     => auth('api')->user()->phone,
             'billing_address' => $billing_address,
             'shipping_address'=> $shipping_address
         );

@@ -9,8 +9,8 @@ class Cart extends Model
     protected $fillable = ['user_id', 'SKU_id', 'qty'];
    	public $timestamps = false;
 
-   	public function getSKU()
+   	public function sku()
     {
-   	    return $this->belongsTo('App\SKU');
+   	    return $this->belongsTo('App\SKU','SKU_id','id');
     }
 }

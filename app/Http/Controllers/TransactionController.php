@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TransactionHeader;
+use App\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -37,5 +38,24 @@ class TransactionController extends Controller
         {
             return response()->json(['msg' => 'Failed'], 401);
         }
+    }
+
+    public function addToCart(Request $request){
+        $x = Cart::where('user_id',auth('api')->user()->id)
+                ->where('SKU_id',$request->id)->first();
+        //ada duplicate
+        if($x){
+            $x->qty = $x->qty+1;
+            $x->save();
+        }
+        //ngga ada duplicate
+        else{
+            Cart::create([
+                'user_id'=>auth('api')->user()->id,
+                'SKU_id'=>$request->id,
+                'qty'=>1
+            ]);
+        }
+        return response()->json(['msg'=>'success'],200);
     }
 }

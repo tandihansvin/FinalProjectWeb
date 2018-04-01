@@ -31,9 +31,10 @@ Route::group([
 
 });
 
-Route::post('/search', 'ProductController@search');
+Route::post('/filter', 'ProductController@search');
 Route::get('/product','ProductController@getSKU');
 Route::get('/product/topProduct', 'ProductController@getTopProduct');
+Route::post('/cart','TransactionController@addToCart');
 
 //Route::group([
 
