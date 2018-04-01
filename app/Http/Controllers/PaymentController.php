@@ -123,6 +123,8 @@ class PaymentController extends Controller
             'customer_details'   => $customer_details
         );
 
+        Cart::where('user_id', auth('api')->user()->id)->delete();
+
         try
         {
             $vtweb_url = $vt->vtweb_charge($transaction_data);
