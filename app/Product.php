@@ -29,8 +29,8 @@ class Product extends Model
             $tag->tag;
         }
 
-        $x['sku'] = $this->skus;
-        foreach($x['sku'] as &$sku){
+        $x['skus'] = $this->skus;
+        foreach($x['skus'] as &$sku){
             $sku->color;
             $sku->size;
             $sku->image;
