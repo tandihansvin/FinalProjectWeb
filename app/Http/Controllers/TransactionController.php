@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\StatusChangeHistory;
 use App\TransactionHeader;
 use App\Cart;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -57,5 +59,11 @@ class TransactionController extends Controller
             ]);
         }
         return response()->json(['msg'=>'success'],200);
+    }
+
+    public function checkExpired(){
+        StatusChangeHistory::where('status_id',1)
+                            ->where('time', '<', Carbon::now()->subDays(3))
+                            ->update(['status_id' => 7]);
     }
 }

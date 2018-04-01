@@ -52,6 +52,8 @@ Route::get('/menu', 'navController@loadMenu');
 
 Route::post('/test/midtrans', 'PaymentController@createTransaction');
 
+Route::get('/checkExpire','TransactionController@checkExpired');
+
 Route::group([
     'prefix' =>'user'
 ], function($router){

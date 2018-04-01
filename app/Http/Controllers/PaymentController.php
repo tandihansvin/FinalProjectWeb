@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\StatusChangeHistory;
 use Exception;
 use Illuminate\Http\Request;
 use App\Veritrans\Veritrans;
@@ -48,6 +49,15 @@ class PaymentController extends Controller
             'total' => $total,
             'time' => date("Y-m-d H:i:s")
         ]);
+
+        //bikin status changes
+        //header, status, time
+        $statusChange = StatusChangeHistory::create([
+            'header_id' => $head->id,
+            'status' => 1,
+            'time' => date("Y-m-d H:i:s")
+        ]);
+
         $vt = new Veritrans();
 
         $transaction_details = array(
