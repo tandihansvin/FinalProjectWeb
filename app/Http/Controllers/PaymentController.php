@@ -162,17 +162,17 @@ class PaymentController extends Controller
 
         try {
 //            return ($request->order_id);
-            $txn = TransactionHeader::where('id',$request->order_id)->get();
+            $txn = TransactionHeader::where('id',$request->order_id)->first();
         } catch (Exception $e) {
             return response()->json([ 'error' => 'Order not found' ], 404);
         }
 
-//        try {
+        try {
             $x = $txn->statusChange->latest('time')->firstOrFail();
-            $last = $x[0]->status->id;
-//        } catch (Exception $e) {
-//            return response()->json([ 'error' => 'Transaction is invalid' ], 404);
-//        }
+            $last = $x->status->id;
+        } catch (Exception $e) {
+            return response()->json([ 'error' => 'Transaction is invalid' ], 404);
+        }
 
         if($last == 1 and !in_array($status, $wait_status)){
             $statusid = 1;
