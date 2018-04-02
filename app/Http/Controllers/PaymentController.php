@@ -187,7 +187,7 @@ class PaymentController extends Controller
 
             StatusChangeHistory::create([
                 'time' => date("Y-m-d H:i:s"),
-                'header_id' => $txn->id,
+                'header_id' => $txn[0]->id,
                 'status_id' => $last,
                 'desc' => $request->payment_type . ' ' . $status
             ]);
