@@ -163,19 +163,19 @@ class PaymentController extends Controller
         $wait_status = ['pending'];
         $status = $request->transaction_status;
 
-//        try {
-//            return ($request->order_id);
+        try {
+            return ($request->order_id);
             $txn = TransactionHeader::where('id',$request->order_id)->get();
-//        } catch (Exception $e) {
-//            return response()->json([ 'error' => 'Order not found' ], 404);
-//        }
+        } catch (Exception $e) {
+            return response()->json([ 'error' => 'Order not found' ], 404);
+        }
 
-//        try {
+        try {
             $x = $txn[0]->statusChange()->latest('time')->firstOrFail();
             $last = $x->status->id;
-//        } catch (Exception $e) {
-//            return response()->json([ 'error' => 'Transaction is invalid' ], 404);
-//        }
+        } catch (Exception $e) {
+            return response()->json([ 'error' => 'Transaction is invalid' ], 404);
+        }
 
         if($last == 1 and !in_array($status, $wait_status)){
             $statusid = 1;
@@ -188,8 +188,8 @@ class PaymentController extends Controller
 
             StatusChangeHistory::create([
                 'time' => date("Y-m-d H:i:s"),
-                'header_id' => $txn,
-                'status_id' => $statusid,
+                'header_id' => $txd->id,
+                'status_id' => $last,
                 'desc' => $request->payment_type . ' ' . $status
             ]);
         }
