@@ -171,7 +171,7 @@ class PaymentController extends Controller
 //        }
 
 //        try {
-            $x = $txn[0]->statusChange->orderBy('time','desc')->firstOrFail();
+            $x = $txn[0]->statusChange()->latest('time')->firstOrFail();
             $last = $x->status->id;
 //        } catch (Exception $e) {
 //            return response()->json([ 'error' => 'Transaction is invalid' ], 404);
