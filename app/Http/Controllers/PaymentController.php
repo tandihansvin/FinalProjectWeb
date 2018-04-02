@@ -178,7 +178,7 @@ class PaymentController extends Controller
 
         if($last == 1 and !in_array($status, $wait_status)){
             $statusid = 1;
-
+            return in_array($status, $good_status);
             if(in_array($status, $good_status)) {
                 $statusid = 2;
             } else {
