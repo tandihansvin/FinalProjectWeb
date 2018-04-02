@@ -164,7 +164,6 @@ class PaymentController extends Controller
         $status = $request->transaction_status;
 
         try {
-            return ($request->order_id);
             $txn = TransactionHeader::where('id',$request->order_id)->get();
         } catch (Exception $e) {
             return response()->json([ 'error' => 'Order not found' ], 404);
