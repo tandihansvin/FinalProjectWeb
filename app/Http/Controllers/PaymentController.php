@@ -177,14 +177,7 @@ class PaymentController extends Controller
         }
 
         if($last == 1 and !in_array($status, $wait_status)){
-            $statusid = 1;
-            return in_array($status, $good_status) ? 'benar' : 'salah';
-            if(in_array($status, $good_status)) {
-                $statusid = 2;
-            } else {
-                $statusid = 7;
-            }
-
+            $statusid = in_array($status, $good_status) ? 2:7;
             StatusChangeHistory::create([
                 'time' => date("Y-m-d H:i:s"),
                 'header_id' => $txn[0]->id,
