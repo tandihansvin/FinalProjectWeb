@@ -55,7 +55,7 @@ class ProductController extends Controller
     }
 
     public function getSKU(Request $request){
-        try{
+//        try{
             $product = Product::findOrFail($request->id);
             $product->skus;
             foreach ($product->skus as $sku){
@@ -64,10 +64,10 @@ class ProductController extends Controller
                 $sku->images;
             }
             return $product;
-        }
-        catch(ModelNotFoundException $e){
-            return response()->json(['msg'=>'product is not found'],401);
-        }
+//        }
+//        catch(ModelNotFoundException $e){
+//            return response()->json(['msg'=>'product is not found'],401);
+//        }
     }
 
     public function getTopProduct(){
