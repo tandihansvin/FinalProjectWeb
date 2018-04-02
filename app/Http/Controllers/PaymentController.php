@@ -167,11 +167,12 @@ class PaymentController extends Controller
             return response()->json([ 'error' => 'Order not found' ], 404);
         }
 
-        try {
-            $last = $txn->statusChange()->latest('time')->firstOrFail()->status->id;
-        } catch (Exception $e) {
-            return response()->json([ 'error' => 'Transaction is invalid' ], 404);
-        }
+//        try {
+            $x = $txn->statusChange->latest('time')->firstOrFail();
+            $last = $x->status->id;
+//        } catch (Exception $e) {
+//            return response()->json([ 'error' => 'Transaction is invalid' ], 404);
+//        }
 
         if($last == 1 and !in_array($status, $wait_status)){
             $statusid = 1;
