@@ -55,15 +55,16 @@ class ProductController extends Controller
     }
 
     public function getSKU(Request $request){
+            return Product::all();
 //        try{
-            $product = Product::findOrFail($request->id);
-            $product->skus;
-            foreach ($product->skus as $sku){
-                $sku->color;
-                $sku->size;
-                $sku->images;
-            }
-            return $product;
+//            $product = Product::findOrFail($request->id);
+//            $product->skus;
+//            foreach ($product->skus as $sku){
+//                $sku->color;
+//                $sku->size;
+//                $sku->images;
+//            }
+//            return $product;
 //        }
 //        catch(ModelNotFoundException $e){
 //            return response()->json(['msg'=>'product is not found'],401);
