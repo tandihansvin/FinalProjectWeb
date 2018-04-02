@@ -55,8 +55,9 @@ class PaymentController extends Controller
         //header, status, time
         $statusChange = StatusChangeHistory::create([
             'header_id' => $head->id,
-            'status' => 1,
-            'time' => date("Y-m-d H:i:s")
+            'status_id' => 1,
+            'time' => date("Y-m-d H:i:s"),
+            "desc" => ''
         ]);
 
         $vt = new Veritrans();

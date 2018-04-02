@@ -53,7 +53,7 @@ Route::get('/menu', 'navController@loadMenu');
 
 //Route::get("/test/skus", 'testController@sku');
 
-Route::post('test/midtrans', 'PaymentController@createTransaction');
+//Route::post('test/midtrans', 'PaymentController@createTransaction');
 Route::post('transaction/create', 'PaymentController@createTransaction');
 Route::post('transaction/callback', 'PaymentController@callback');
 
