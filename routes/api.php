@@ -31,34 +31,27 @@ Route::group([
 
 });
 
+// Category Filtering
 Route::post('/filter', 'ProductController@search');
+
+// Product Page
 Route::get('/product','ProductController@getSKU');
 Route::get('/product/topProduct', 'ProductController@getTopProduct');
 
+// Cart
 Route::post('/cart','CartController@addToCart');
 Route::get('/cart','CartController@loadCart');
 Route::put('/cart','CartController@updateCart');
 
-//Route::group([
-
-//	'prefix' => 'item'
-//], function($router){
-//	Route::get('', 'ItemController@index');
-//	Route::get('top10','ItemController@top10');
-//});
-
+// Navigation
 Route::get('/menu', 'navController@loadMenu');
 
-//Route::get("/test/getproducttags", 'testController@getProductTags');
-
-//Route::get("/test/skus", 'testController@sku');
-
-//Route::post('test/midtrans', 'PaymentController@createTransaction');
+// Transaction
 Route::post('transaction/create', 'PaymentController@createTransaction');
 Route::post('transaction/callback', 'PaymentController@callback');
-
 Route::get('/checkExpire','TransactionController@checkExpired');
 
+// User
 Route::group([
     'prefix' =>'user'
 ], function($router){
