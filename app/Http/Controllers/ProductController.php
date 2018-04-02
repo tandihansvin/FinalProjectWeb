@@ -58,7 +58,7 @@ class ProductController extends Controller
 //            return Product::all();
 //        try{
 //            $product = Product::findOrFail($request->id);
-            return Product::findOrFail($request->id);
+            return $request->id;
 //            $product->skus;
 //            foreach ($product->skus as $sku){
 //                $sku->color;
