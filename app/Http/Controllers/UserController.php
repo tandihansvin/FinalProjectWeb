@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function getProfile(){
         try{
-            $user = User::findOrFail(auth('api')->user())->first();
+            $user = User::findOrFail(auth('api')->user()->id);
             $user->address;
             return $user;
         }
@@ -26,6 +26,10 @@ class UserController extends Controller
         {
             return response()->json(['msg' => 'Failed to retrieve data'], 401);
         }
+    }
+
+    public function getAddress(){
+        return Address::where('user_id',auth('api')->user()->id)->get();
     }
 
     public function updateProfile(Request $request){

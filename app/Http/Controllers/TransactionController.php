@@ -42,23 +42,5 @@ class TransactionController extends Controller
         }
     }
 
-    public function addToCart(Request $request){
-        $x = Cart::where('user_id',auth('api')->user()->id)
-                ->where('SKU_id',$request->id)->first();
-        //ada duplicate
-        if($x){
-            $x->qty = $x->qty+1;
-            $x->save();
-        }
-        //ngga ada duplicate
-        else{
-            Cart::create([
-                'user_id'=>auth('api')->user()->id,
-                'SKU_id'=>$request->id,
-                'qty'=>1
-            ]);
-        }
-        return response()->json(['msg'=>'success'],200);
-    }
 
 }

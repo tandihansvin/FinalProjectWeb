@@ -34,7 +34,10 @@ Route::group([
 Route::post('/filter', 'ProductController@search');
 Route::get('/product','ProductController@getSKU');
 Route::get('/product/topProduct', 'ProductController@getTopProduct');
-Route::post('/cart','TransactionController@addToCart');
+
+Route::post('/cart','CartController@addToCart');
+Route::get('/cart','CartController@loadCart');
+Route::put('/cart','CartController@updateCart');
 
 //Route::group([
 
@@ -67,4 +70,5 @@ Route::group([
     Route::put('updatePassword', 'UserController@updatePassword');
     Route::delete('deleteAddress','UserController@deleteAddress');
     Route::post('addAddress','UserController@addAddress');
+    Route::get('address', 'UserController@getAddress');
 });
